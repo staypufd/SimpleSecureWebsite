@@ -1,0 +1,73 @@
+package edu.austincc.servlets;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import edu.austincc.domain.User;
+
+/**
+ * Servlet implementation class LoginServlet
+ */
+@WebServlet({ "/LoginServlet", "/login" })
+public class LoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public LoginServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+    
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	String url = "/index.html";
+    	
+    	String age = request.getParameter("age");
+    	
+    	if (age != null) {
+    		url = "/WEB-INF/login.jsp";
+    		request.setAttribute("age", age);
+    	}
+    
+    
+    	
+    	getServletContext().getRequestDispatcher(url).forward(request, response);
+
+    }
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		String url = "/WEB-INF/login.jsp";
+		
+		String action = request.getParameter("action");
+		
+		if (action == null) {
+			url = "/WEB-INF/login.jsp";
+		}
+		
+		if (action.equalsIgnoreCase("login")) {
+			String email = request.getParameter("email");
+			String name = request.getParameter("name");
+			
+			User loginUser = new User(email, name);
+			
+			request.setAttribute("user", loginUser);
+			url = "/WEB-INF/main.jsp";
+		}
+		
+		getServletContext().getRequestDispatcher(url).forward(request, response);
+	}
+
+}
