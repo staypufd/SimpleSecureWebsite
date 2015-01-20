@@ -37,10 +37,17 @@ public class LoginServlet extends HttpServlet {
     		request.setAttribute("age", age);
     	}
     
-    
+    	
+    	// If age is 25, set reponse to tell browser to redirt to cnn
+    	int ageNum = new Integer(age);
+    	if (ageNum == 25) {
+    		url = "http://www.cnn.com";
+    		response.sendRedirect(url);
+    		return;
+    	}
     	
     	getServletContext().getRequestDispatcher(url).forward(request, response);
-
+    
     }
 
 	/**

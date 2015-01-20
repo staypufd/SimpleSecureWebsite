@@ -1,6 +1,6 @@
 package edu.austincc.domain;
 
-public class User {
+public class User implements Comparable<User> {
 	private String email;
 	private String name;
 	
@@ -35,6 +35,20 @@ public class User {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "User [email=" + email + ", name=" + name + "]";
+	}
+
+	@Override
+	public int compareTo(User o) {
+		// TODO Auto-generated method stub
+		return this.getName().compareTo(o.getName());
 	}
 	
 	
