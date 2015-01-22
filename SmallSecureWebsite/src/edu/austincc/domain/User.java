@@ -3,13 +3,16 @@ package edu.austincc.domain;
 public class User implements Comparable<User> {
 	private String email;
 	private String name;
+	private int	ID;
+	private String password;
 	
 	
-	
-	public User(String email, String name) {
+	public User(String email, String name, int ID, String password) {
 		super();
 		this.email = email;
 		this.name = name;
+		this.ID = ID;
+		this.password = password;
 	}
 	
 	/**
@@ -36,15 +39,47 @@ public class User implements Comparable<User> {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	/**
+	 * @return the iD
+	 */
+	public int getID() {
+		return ID;
+	}
+
+	/**
+	 * @param iD the iD to set
+	 */
+	public void setID(int iD) {
+		ID = iD;
+	}
+	
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "User [email=" + email + ", name=" + name + "]";
+		return "User [email=" + email + ", name=" + name + ", ID=" + ID
+				+ ", password=" + password + "]";
 	}
 
+	// Implements the Comparable Interface
 	@Override
 	public int compareTo(User o) {
 		// TODO Auto-generated method stub
@@ -52,5 +87,13 @@ public class User implements Comparable<User> {
 	}
 	
 	
+	// Helper methods
+	public String getCapitalizedUserName() 
+	{
+		String sString = this.name.toLowerCase();
+		sString = Character.toString(sString.charAt(0)).toUpperCase() + sString.substring(1);
+		
+		return sString;
+	}
 	
 }

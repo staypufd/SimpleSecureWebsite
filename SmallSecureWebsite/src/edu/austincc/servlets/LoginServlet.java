@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.austincc.database.DBManager;
 import edu.austincc.domain.User;
 
 /**
@@ -65,16 +66,26 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		if (action.equalsIgnoreCase("login")) {
-			String email = request.getParameter("email");
+			
 			String name = request.getParameter("name");
+			String password = request.getParameter("password");
+	
+			User theFoundUser = DBManager.findUserWithNameAndPassword(name, password);
 			
-			User loginUser = new User(email, name);
-			
-			request.setAttribute("user", loginUser);
-			url = "/WEB-INF/main.jsp";
+			// If we find the user set the user on the request and foward to the main page
+			// otherwise send them back to the login page
+			if (theFoundUser != null) {
+				request.setAttribute("user", theFoundUser);
+				request.setAttribute("capName", theFoundUser.getCapitalizedUserName());
+				url = "/WEB-INF/main.jsp";
+			} else {
+				url = "/WEB-INF/login.jsp";
+			}
 		}
 		
 		getServletContext().getRequestDispatcher(url).forward(request, response);
 	}
+
+	
 
 }

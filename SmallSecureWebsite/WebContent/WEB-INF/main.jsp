@@ -1,4 +1,6 @@
-
+<%@ taglib prefix="fn" 
+           uri="http://java.sun.com/jsp/jstl/functions" %>
+           
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,8 +8,10 @@
 <title>Main Page</title>
 </head>
 <body>
-	Hello ${user.name}
+	<!--  Hello, ${ fn:toUpperCase(user.name) } -->
+	Hello, ${capName }
 	<br/>
+	Your ID is: ${user.ID }<br/>
 	Your email is: ${user.email} <br/>
 	
 	<p>Today is the day for all good humans to step up to the aid of their country! </p>
