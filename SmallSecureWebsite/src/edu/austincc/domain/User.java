@@ -1,13 +1,24 @@
 package edu.austincc.domain;
 
+import java.util.UUID;
+
 public class User implements Comparable<User> {
 	private String email;
 	private String name;
-	private int	ID;
+	private UUID	ID;
 	private String password;
 	
 	
-	public User(String email, String name, int ID, String password) {
+	
+	public User(String email, String name, String password) {
+		super();
+		this.email = email;
+		this.name = name;
+		this.ID = UUID.randomUUID();
+		this.password = password;
+	}
+	
+	public User(String email, String name, UUID ID, String password) {
 		super();
 		this.email = email;
 		this.name = name;
@@ -43,14 +54,14 @@ public class User implements Comparable<User> {
 	/**
 	 * @return the iD
 	 */
-	public int getID() {
+	public UUID getID() {
 		return ID;
 	}
 
 	/**
 	 * @param iD the iD to set
 	 */
-	public void setID(int iD) {
+	public void setID(UUID iD) {
 		ID = iD;
 	}
 	
@@ -67,7 +78,6 @@ public class User implements Comparable<User> {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 
 
 	/* (non-Javadoc)

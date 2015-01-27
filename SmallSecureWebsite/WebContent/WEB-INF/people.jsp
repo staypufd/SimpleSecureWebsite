@@ -17,9 +17,11 @@
 
 <title>Email Contacts</title>
 </head>
-<body>
+<body>	
 
-	<h2>People List</h2>
+	<c:import url="/header.html"></c:import>
+
+    <h4>People List</h4>
 	<table class="table table-striped table-bordered table-hover table-condensed">
 		<!--  <thead><td>Name</td><td>Email</td>
 		</thead>	 -->

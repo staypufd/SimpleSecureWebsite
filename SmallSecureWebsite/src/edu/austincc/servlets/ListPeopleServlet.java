@@ -34,7 +34,7 @@ public class ListPeopleServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		ArrayList<User> people = DBManager.getPeople();
+		ArrayList<User> people = DBManager.sharedInstance().getPeople();
 		
 		String url = "/WEB-INF/people.jsp";
 		

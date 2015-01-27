@@ -2,26 +2,51 @@ package edu.austincc.database;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.UUID;
 
 import edu.austincc.domain.User;
 
 public class DBManager {
+	
+	// Static variables aka Class variables
+	// sharedInstnace is a Singelton
+	private static DBManager sharedInstance;
+	
+	// Instance Variables
+	ArrayList<User> people = new ArrayList<User>();
 
-	public static ArrayList<User> getPeople() {
-		ArrayList<User> people = new ArrayList();
-		people.add(new User("sam@foo.com", "sam", 1, "abc"));
-		people.add(new User("bob@foo.com", "bob", 2, "def"));
-		people.add(new User("jill@foo.com", "jill", 3, "hij"));
-		people.add(new User("mary@apple.com", "mary", 4, "klm"));
-		people.add(new User("sam@apple.com", "sam", 5, "nop"));
-		people.add(new User("melba@ibm.com", "melba", 6, "qrs"));
+	private DBManager() {
+		// Intialize the people into the instance
+		this.addUser(new User("sam@foo.com", "sam", UUID.randomUUID(), "abc"));
+		this.addUser(new User("bob@foo.com", "bob", UUID.randomUUID(), "def"));
+		this.addUser(new User("jill@foo.com", "jill", UUID.randomUUID(), "hij"));
+		this.addUser(new User("mary@apple.com", "mary", UUID.randomUUID(), "klm"));
+		this.addUser(new User("sam@apple.com", "sam", UUID.randomUUID(), "nop"));
+		this.addUser(new User("melba@ibm.com", "melba", UUID.randomUUID(), "qrs"));
+	}
+
+	// Initialize the sharedInstance singleton here
+	public static DBManager sharedInstance() {
+		if (sharedInstance == null) {
+			sharedInstance = new DBManager();
+		}
+		
+		return sharedInstance;
+	}
+	
+	public void addUser(User user) {
+		// TODO Auto-generated method stub
+		people.add(user);
+	}
+
+	public ArrayList<User> getPeople() {
 
 		Collections.sort(people);
 
 		return people;
 	}
 
-	public static User findUserWithNameAndEmail(String name, String email) {
+	public User findUserWithNameAndEmail(String name, String email) {
 
 		ArrayList<User> thePeople = getPeople();
 
@@ -38,7 +63,7 @@ public class DBManager {
 		return null;
 	}
 	
-	public static User findUserWithNameAndPassword(String name, String password) {
+	public User findUserWithNameAndPassword(String name, String password) {
 
 		ArrayList<User> thePeople = getPeople();
 
@@ -55,25 +80,23 @@ public class DBManager {
 		return null;
 	}
 
-	public static User findUserWithID(String theUserID) {
-		
-		int id = new Integer(theUserID);
+	public User findUserWithID(String theUserID) {
 
-		return findUserWithID(id);
+		return findUserWithID(UUID.fromString(theUserID));
 		
 	}
 	
-	public static User findUserWithID(int theUserID) {
+	public User findUserWithID(UUID theUserID) {
 		
 		ArrayList<User> thePeople = getPeople();
 		
-		int id = theUserID;
+		UUID id = theUserID;
 
 		// Loop thru the users and find the one who has
 		// the name and email we are looking for and return it.
 		// If they are not found return null.
 		for (User user : thePeople) {
-			if ( user.getID() == id ) {
+			if ( user.getID().equals(id) ) {
 				return user;
 			}
 		}

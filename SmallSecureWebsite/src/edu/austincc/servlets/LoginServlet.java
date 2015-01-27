@@ -70,7 +70,7 @@ public class LoginServlet extends HttpServlet {
 			String name = request.getParameter("name");
 			String password = request.getParameter("password");
 	
-			User theFoundUser = DBManager.findUserWithNameAndPassword(name, password);
+			User theFoundUser = DBManager.sharedInstance().findUserWithNameAndPassword(name, password);
 			
 			// If we find the user set the user on the request and foward to the main page
 			// otherwise send them back to the login page

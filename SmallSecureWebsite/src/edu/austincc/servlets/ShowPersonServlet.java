@@ -35,7 +35,7 @@ public class ShowPersonServlet extends HttpServlet {
 		
 		String theUserID = request.getParameter("id");
 		
-		User theFoundUser = DBManager.findUserWithID(theUserID);
+		User theFoundUser = DBManager.sharedInstance().findUserWithID(theUserID);
 		
 		if (theFoundUser != null) {
 			request.setAttribute("user", theFoundUser);
