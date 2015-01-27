@@ -11,7 +11,7 @@
 </head>
 <body bgcolor="lightgrey">
 	
-	<c:import url="/header.html"></c:import>
+	<c:import url="header.jsp"></c:import>
 		
 	<div class="jumbotron">
 	  <h1>Hello, world!</h1>

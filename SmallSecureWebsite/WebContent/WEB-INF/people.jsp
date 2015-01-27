@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-
 <%@ taglib prefix="c" 
            uri="http://java.sun.com/jsp/jstl/core" %>  
            
@@ -19,7 +16,7 @@
 </head>
 <body>	
 
-	<c:import url="/header.html"></c:import>
+	<c:import url="/header.jsp"></c:import>
 
     <h4>People List</h4>
 	<table class="table table-striped table-bordered table-hover table-condensed">

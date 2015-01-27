@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" 
+           uri="http://java.sun.com/jsp/jstl/core" %>  
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +15,7 @@
 </head>
 <body>
 
-	<c:import url="/header.html"></c:import>
+	<c:import url="/header.jsp"></c:import>
 	
 	<h1>Add User</h1>
 	<div class="col-md-8">

@@ -1,7 +1,6 @@
 package edu.austincc.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,21 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import edu.austincc.database.DBManager;
-import edu.austincc.domain.User;
-
-
 /**
- * Servlet implementation class ListPeopleServlet
+ * Servlet implementation class LogoutServelet
  */
-@WebServlet({ "/ListPeopleServlet", "/listpeople" })
-public class ListPeopleServlet extends HttpServlet {
+@WebServlet({ "/LogoutServelet", "/logout" })
+public class LogoutServelet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListPeopleServlet() {
+    public LogoutServelet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,24 +28,11 @@ public class ListPeopleServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		String url = "/index.jsp";
 		
 		HttpSession session = request.getSession();
-		boolean loggedIn = (boolean)session.getAttribute("isLoggedIn");
-		 
-		if ( loggedIn ) {
-			
-			ArrayList<User> people = DBManager.sharedInstance().getPeople();
-			
-			url = "/WEB-INF/people.jsp";
-			
-			request.setAttribute("people", people);
+		session.setAttribute("isLoggedIn", false); 
 		
-		}
-		
-		getServletContext().getRequestDispatcher(url).forward(request, response);
+		response.sendRedirect("index.jsp");
 	}
 
 }

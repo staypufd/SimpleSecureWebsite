@@ -7,10 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import edu.austincc.database.DBManager;
 import edu.austincc.domain.User;
-
+ 
 /**
  * Servlet implementation class LoginServlet
  */
@@ -29,7 +30,7 @@ public class LoginServlet extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
-    	String url = "/index.html";
+    	String url = "/index.jsp";
     	
     	String age = request.getParameter("age");
     	
@@ -63,9 +64,9 @@ public class LoginServlet extends HttpServlet {
 		
 		if (action == null) {
 			url = "/WEB-INF/login.jsp";
-		}
+		} 
 		
-		if (action.equalsIgnoreCase("login")) {
+		if (action.equalsIgnoreCase("login")) { 
 			
 			String name = request.getParameter("name");
 			String password = request.getParameter("password");
@@ -77,9 +78,15 @@ public class LoginServlet extends HttpServlet {
 			if (theFoundUser != null) {
 				request.setAttribute("user", theFoundUser);
 				request.setAttribute("capName", theFoundUser.getCapitalizedUserName());
-				url = "/WEB-INF/main.jsp";
-			} else {
-				url = "/WEB-INF/login.jsp";
+				
+				HttpSession session = request.getSession();
+				session.setAttribute("isLoggedIn", true); 
+				
+				// If you want to see the user object in session do this
+				// session.setAttribute("user", theFoundUser);
+				url = "/WEB-INF/main.jsp";  
+			} else { 
+				url = "/WEB-INF/login.jsp"; 
 			}
 		}
 		

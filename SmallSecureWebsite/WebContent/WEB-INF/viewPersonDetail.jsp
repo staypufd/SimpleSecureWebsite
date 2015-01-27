@@ -12,7 +12,7 @@
 <title>Person Detail</title>
 </head>
 <body >
-	<c:import url="/header.html"></c:import>
+	<c:import url="/header.jsp"></c:import>
 	
 <h2>${capName } Detail Page</h2>
 <hr/>

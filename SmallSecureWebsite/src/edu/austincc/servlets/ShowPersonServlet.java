@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import edu.austincc.database.DBManager;
 import edu.austincc.domain.User;
@@ -31,18 +32,27 @@ public class ShowPersonServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String url = "/WEB-INF/listpeople";
+	
+		String url = "/index.jsp";
+				
+		HttpSession session = request.getSession();
+		boolean loggedIn = (boolean)session.getAttribute("isLoggedIn");
+		 
+		if ( loggedIn ) {
 		
-		String theUserID = request.getParameter("id");
-		
-		User theFoundUser = DBManager.sharedInstance().findUserWithID(theUserID);
-		
-		if (theFoundUser != null) {
-			request.setAttribute("user", theFoundUser);
-			request.setAttribute("capName", theFoundUser.getCapitalizedUserName());
-			url = "/WEB-INF/viewPersonDetail.jsp";
-		} else {
 			url = "/WEB-INF/listpeople";
+			
+			String theUserID = request.getParameter("id");
+			
+			User theFoundUser = DBManager.sharedInstance().findUserWithID(theUserID);
+			
+			if (theFoundUser != null) {
+				request.setAttribute("user", theFoundUser);
+				request.setAttribute("capName", theFoundUser.getCapitalizedUserName());
+				url = "/WEB-INF/viewPersonDetail.jsp";
+			} else {
+				url = "/WEB-INF/listpeople";
+			}
 		}
 		
 		getServletContext().getRequestDispatcher(url).forward(request, response);
