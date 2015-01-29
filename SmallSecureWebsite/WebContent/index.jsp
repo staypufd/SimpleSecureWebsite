@@ -12,15 +12,23 @@
 <body bgcolor="lightgrey">
 	
 	<c:import url="header.jsp"></c:import>
-		
-	<div class="jumbotron">
-	  <h1>Hello, world!</h1>
-			<p>People Who Need People</p>
-			<p>-- Find people who need people like you --</p>
-	  <p><a class="btn btn-primary btn-lg" href="learnmore.html" role="button">Learn more</a></p>
-	</div>
 
+	<c:if test="${sessionScope.isLoggedIn == true}"> 
+		<div class="jumbotron">
+		  <h1>Hello,  ${capName }</h1>
+				<p>People Who Need People</p>
+				<p>-- Find people who need people like you --</p>
+		  <p><a class="btn btn-primary btn-lg" href="learnmore.html" role="button">Learn more</a></p>
+		</div>
+	</c:if>
 
+	<c:if test="${sessionScope.isLoggedIn == false}"> 
+		<div class="jumbotron">
+			<h1>Welcome to the ACC Demo Servlet Application!</h1>
+			<p>Login to use our cool app!</p>
+			<p><a class="btn btn-primary btn-lg" href="learnmore.html" role="button">Learn more</a></p>
+		</div>
+	</c:if>
 
 </body>
 </html>

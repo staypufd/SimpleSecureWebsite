@@ -30,7 +30,6 @@
            <c:if test="${isLoggedIn == true }">
            		<li><a href="/SmallSecureWebsite/listpeople">List People</a></li>
            		<li><a href="/SmallSecureWebsite/adduser">Add User</a></li>
-           		<li><a href="/SmallSecureWebsite/foobar">Foobar</a></li>
 	      	</ul>
         	<ul class="nav navbar-nav navbar-right">
          		<li><a href="/SmallSecureWebsite/logout">Logout</a></li>

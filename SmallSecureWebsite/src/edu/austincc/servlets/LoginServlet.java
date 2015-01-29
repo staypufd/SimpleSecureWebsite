@@ -77,13 +77,11 @@ public class LoginServlet extends HttpServlet {
 			// otherwise send them back to the login page
 			if (theFoundUser != null) {
 				request.setAttribute("user", theFoundUser);
-				request.setAttribute("capName", theFoundUser.getCapitalizedUserName());
-				
+
 				HttpSession session = request.getSession();
 				session.setAttribute("isLoggedIn", true); 
-				
-				// If you want to see the user object in session do this
-				request.setAttribute("user", theFoundUser);
+				session.setAttribute("capName", theFoundUser.getCapitalizedUserName());
+			
 				
 				url = "/WEB-INF/main.jsp";  
 			} else { 
