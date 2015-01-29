@@ -1,17 +1,15 @@
+
 <%@ taglib prefix="c" 
            uri="http://java.sun.com/jsp/jstl/core" %>  
+           
+<c:import url="header.html"></c:import>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<!-- Bootstrap -->
-    <link href="bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet">
+	 
 <title>Company XYZ</title>
 </head>
 <body bgcolor="lightgrey">
 	
-	<c:import url="header.jsp"></c:import>
+	<c:import url="navbar.jsp"></c:import>
 
 	<c:if test="${sessionScope.isLoggedIn == true}"> 
 		<div class="jumbotron">
@@ -22,7 +20,7 @@
 		</div>
 	</c:if>
 
-	<c:if test="${sessionScope.isLoggedIn == false}"> 
+	<c:if test="${ (sessionScope.isLoggedIn == false) or (empty isLoggedIn) }"> 
 		<div class="jumbotron">
 			<h1>Welcome to the ACC Demo Servlet Application!</h1>
 			<p>Login to use our cool app!</p>

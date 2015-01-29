@@ -1,19 +1,16 @@
+
 <%@ taglib prefix="c" 
            uri="http://java.sun.com/jsp/jstl/core" %>  
-
+           
 <%@ taglib prefix="fn" 
            uri="http://java.sun.com/jsp/jstl/functions" %>
            
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<!-- Bootstrap -->
-    <link href="bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet">
+<c:import url="/header.html"></c:import>
+
 <title>Main Page</title>
 </head>
 <body>
-	<c:import url="/header.jsp">
+	<c:import url="/navbar.jsp">
 		<c:param name="isLoggedIn" value="${isLoggedIn }"/>
 	</c:import>
 

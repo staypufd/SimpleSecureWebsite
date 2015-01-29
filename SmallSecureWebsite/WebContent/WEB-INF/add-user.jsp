@@ -1,21 +1,15 @@
-<%@ taglib prefix="c" 
-           uri="http://java.sun.com/jsp/jstl/core" %>  
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
 <%@ taglib prefix="c" 
            uri="http://java.sun.com/jsp/jstl/core" %>  
            
-<!-- Bootstrap -->
-    <link href="bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet">
+<c:import url="/header.html"></c:import>
+
     
 <title>Add User</title>
 </head>
 <body>
 
-	<c:import url="/header.jsp"></c:import>
+	<c:import url="/navbar.jsp"></c:import>
 	
 	<h1>Add User</h1>
 	<div class="col-md-8">

@@ -1,17 +1,15 @@
+
 <%@ taglib prefix="c" 
            uri="http://java.sun.com/jsp/jstl/core" %>  
+           
+<c:import url="/header.html"></c:import>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<!-- Bootstrap -->
-    <link href="bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet">
 <title>Login</title>
 </head>
 
 <body>
-
+	<c:import url="/navbar.jsp"></c:import>
+	
 	<p>Age is: ${age}</p>
 
 	<form action="LoginServlet" method="post">
