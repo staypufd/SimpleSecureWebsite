@@ -11,9 +11,6 @@
 </head>
 
 <body>
-	<c:import url="/header.jsp">
-		<c:param name="isLoggedIn" value="false"/>
-	</c:import>
 
 	<p>Age is: ${age}</p>
 

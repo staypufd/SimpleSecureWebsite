@@ -21,17 +21,21 @@
        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
          <ul class="nav navbar-nav">
            <li class="active"><a href="index.jsp">Home</a></li>
-           <c:if test="${isLoggedIn == false }">
-           	<li><a href="/SmallSecureWebsite/login?age=24&color=red">Login</a></li>
+           
+           <c:if test="${ (isLoggedIn == false) or (empty isLoggedIn)  }">
+           		<li><a href="/SmallSecureWebsite/login?age=24&color=red">Login</a></li>
+			</ul>  <!-- close the <ul> tag above -->
            </c:if>
+           
            <c:if test="${isLoggedIn == true }">
-           	<li><a href="/SmallSecureWebsite/listpeople">List People</a></li>
-           	<li><a href="/SmallSecureWebsite/adduser">Add User</a></li>
-	         </ul>
-	         <ul class="nav navbar-nav navbar-right">
-	         	<li><a href="/SmallSecureWebsite/logout">Logout</a></li>
-	         </ul>
-           </c:if>
+           		<li><a href="/SmallSecureWebsite/listpeople">List People</a></li>
+           		<li><a href="/SmallSecureWebsite/adduser">Add User</a></li>
+           		<li><a href="/SmallSecureWebsite/foobar">Foobar</a></li>
+	      	</ul>
+        	<ul class="nav navbar-nav navbar-right">
+         		<li><a href="/SmallSecureWebsite/logout">Logout</a></li>
+         	</ul>
+        </c:if>
        </div><!-- /.navbar-collapse -->
      </div><!-- /.container-fluid -->
    </nav>

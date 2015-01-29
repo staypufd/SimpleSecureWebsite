@@ -18,7 +18,7 @@
 	</c:import>
 
 	<c:if test="${sessionScope.isLoggedIn == true}"> 
-		<p>Logged In!</p>
+		<p class="alert alert-success" role="alert">Logged In!</p>
 	</c:if>	
 
 
@@ -29,7 +29,7 @@
 	Your email is: ${user.email} <br/>
 	
 
-	Logged In User is: ${loggedInUser}
+	Logged In User is: ${capName}
 
 	
 	<p>Today is the day for all good humans to step up to the aid of their country! </p>

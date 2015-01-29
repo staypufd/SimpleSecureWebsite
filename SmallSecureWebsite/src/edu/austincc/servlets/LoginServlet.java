@@ -83,7 +83,8 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("isLoggedIn", true); 
 				
 				// If you want to see the user object in session do this
-				// session.setAttribute("user", theFoundUser);
+				request.setAttribute("user", theFoundUser);
+				
 				url = "/WEB-INF/main.jsp";  
 			} else { 
 				url = "/WEB-INF/login.jsp"; 
