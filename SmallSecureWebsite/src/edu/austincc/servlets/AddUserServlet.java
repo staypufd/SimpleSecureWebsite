@@ -36,13 +36,14 @@ public class AddUserServlet extends HttpServlet {
 		String url = "/index.jsp";
 		
 		HttpSession session = request.getSession();
-		boolean loggedIn = (boolean)session.getAttribute("isLoggedIn");
-		 
-		if ( loggedIn ) {
-		
-			url = "/WEB-INF/add-user.jsp";
+		Boolean loggedIn = (Boolean)session.getAttribute("isLoggedIn");
+		if (loggedIn != null) { 
+			boolean isLoggedIn = loggedIn.booleanValue();
+			if ( isLoggedIn ) {
+			
+				url = "/WEB-INF/add-user.jsp";
+			}
 		}
-    	
     	getServletContext().getRequestDispatcher(url).forward(request, response);
 		
 	}

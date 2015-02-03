@@ -38,17 +38,21 @@ public class ListPeopleServlet extends HttpServlet {
 		String url = "/index.jsp";
 		
 		HttpSession session = request.getSession();
-		boolean loggedIn = (boolean)session.getAttribute("isLoggedIn");
-		 
-		if ( loggedIn ) {
-			
-			ArrayList<User> people = DBManager.sharedInstance().getPeople();
-			
-			url = "/WEB-INF/people.jsp";
-			
-			request.setAttribute("people", people);
 		
+		Boolean loggedInBoolean = (Boolean) session.getAttribute("isLoggedIn");
+		if ( loggedInBoolean != null ) {
+			boolean loggedIn = loggedInBoolean.booleanValue();
+			 
+			if ( loggedIn ) {
+				
+				ArrayList<User> people = DBManager.sharedInstance().getPeople();
+				
+				url = "/WEB-INF/people.jsp";
+				
+				request.setAttribute("people", people);
+			}
 		}
+
 		
 		getServletContext().getRequestDispatcher(url).forward(request, response);
 	}

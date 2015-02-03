@@ -2,6 +2,10 @@
 <%@ taglib prefix="c" 
            uri="http://java.sun.com/jsp/jstl/core" %>  
            
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+           
+<sql:setDataSource dataSource="jdbc/DB" />
+           
 <c:import url="header.html"></c:import>
 
 	 
@@ -27,6 +31,21 @@
 			<p><a class="btn btn-primary btn-lg" href="learnmore.html" role="button">Learn more</a></p>
 		</div>
 	</c:if>
+
+ <table border='1'>
+          <tr><th>Worker</th><th>Comment</th></tr>
+
+       <sql:query var="qryPosts" >
+                  SELECT * FROM ACC_USER
+          </sql:query>
+
+       <c:forEach var="row" items="${qryPosts.rows}">
+	        <tr>
+               <td><c:out value="${row.ID}" /></td>
+                  <td><c:out value="${row.NAME}" /></td>
+	        </tr>
+          </c:forEach>
+        </table>
 
 </body>
 </html>
