@@ -1,0 +1,9 @@
+Run Derby DB As A Service
+
+1) Make sure you know where you JDK Derby is installed.
+ - On Mac it's in:  /Library/Java/JavaVirtualMachines/jdk1.7.0_55.jdk/Contents/Home/db
+ - On Windows it's in:  (Depends on where you installed your JDK) but for example:
+
+2) Put the JerbyDB directory path on your system path.
+
+3) Run the startNetworkServer command from the $DerbyDB/bin directory in the directory where you have your database created.
