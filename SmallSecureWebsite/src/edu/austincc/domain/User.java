@@ -2,14 +2,16 @@ package edu.austincc.domain;
 
 import java.util.UUID;
 
+
+
 public class User implements Comparable<User> {
 	private String email;
 	private String name;
 	private UUID	ID;
 	private String password;
-	
-	
-	
+
+
+
 	public User(String email, String name, String password) {
 		super();
 		this.email = email;
@@ -17,7 +19,7 @@ public class User implements Comparable<User> {
 		this.ID = UUID.randomUUID();
 		this.password = password;
 	}
-	
+
 	public User(String email, String name, UUID ID, String password) {
 		super();
 		this.email = email;
@@ -25,7 +27,7 @@ public class User implements Comparable<User> {
 		this.ID = ID;
 		this.password = password;
 	}
-	
+
 	/**
 	 * @return the email
 	 */
@@ -50,7 +52,7 @@ public class User implements Comparable<User> {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	/**
 	 * @return the iD
 	 */
@@ -64,7 +66,7 @@ public class User implements Comparable<User> {
 	public void setID(UUID iD) {
 		ID = iD;
 	}
-	
+
 	/**
 	 * @return the password
 	 */
@@ -95,15 +97,15 @@ public class User implements Comparable<User> {
 		// TODO Auto-generated method stub
 		return this.getName().compareTo(o.getName());
 	}
-	
-	
+
+
 	// Helper methods
-	public String getCapitalizedUserName() 
+	public String getCapitalizedUserName()
 	{
 		String sString = this.name.toLowerCase();
 		sString = Character.toString(sString.charAt(0)).toUpperCase() + sString.substring(1);
-		
+
 		return sString;
 	}
-	
+
 }

@@ -7,11 +7,11 @@ import java.util.UUID;
 import edu.austincc.domain.User;
 
 public class DBManager {
-	
+
 	// Static variables aka Class variables
 	// sharedInstnace is a Singelton
 	private static DBManager sharedInstance;
-	
+
 	// Instance Variables
 	ArrayList<User> people = new ArrayList<User>();
 
@@ -30,10 +30,10 @@ public class DBManager {
 		if (sharedInstance == null) {
 			sharedInstance = new DBManager();
 		}
-		
+
 		return sharedInstance;
 	}
-	
+
 	public void addUser(User user) {
 		// TODO Auto-generated method stub
 		people.add(user);
@@ -62,7 +62,7 @@ public class DBManager {
 		// No user found matching name and email
 		return null;
 	}
-	
+
 	public User findUserWithNameAndPassword(String name, String password) {
 
 		ArrayList<User> thePeople = getPeople();
@@ -83,13 +83,13 @@ public class DBManager {
 	public User findUserWithID(String theUserID) {
 
 		return findUserWithID(UUID.fromString(theUserID));
-		
+
 	}
-	
+
 	public User findUserWithID(UUID theUserID) {
-		
+
 		ArrayList<User> thePeople = getPeople();
-		
+
 		UUID id = theUserID;
 
 		// Loop thru the users and find the one who has
@@ -102,7 +102,7 @@ public class DBManager {
 		}
 		// No user found matching name and email
 		return null;
-		
+
 	}
 
 }
