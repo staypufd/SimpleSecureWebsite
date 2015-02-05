@@ -29,17 +29,31 @@
     <!--
     <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
     -->
-  <!--
-  <Resource name="jdbc/DB"
+    
+    
+  <!-- *********************  Embedded  ********************* --> 
+   <!--  Unix/Mac path is in the URL 
+    <Resource name="jdbc/DB"
               auth="Container"
               type="javax.sql.DataSource"
               driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
               url="jdbc:derby:/Users/samjr/MyDB;create=true;"
               maxActive="10"
-              maxIdle="4"/>
-
+              maxIdle="4"/>  
    -->
-
+        
+   <!-- Windows path is in the url -->      
+   <Resource name="jdbc/DB"
+              auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
+              url="jdbc:derby:C:\Users\javauser\MyDB;create=true;"
+              maxActive="10"
+              maxIdle="4"/>  
+              
+              
+  <!-- *********************  Client (for use to talk to DB over socket  ********************* --> 
+  <!--  
   <Resource name="jdbc/DB"
               auth="Container"
               type="javax.sql.DataSource"
@@ -47,5 +61,6 @@
               url="jdbc:derby://localhost:1527/MyDB"
               maxActive="10"
               maxIdle="4"/>
-
+              
+ -->
 </Context>

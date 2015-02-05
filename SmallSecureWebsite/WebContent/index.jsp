@@ -33,19 +33,19 @@
 	</c:if>
 
  <table border='1'>
-          <tr><th>Worker</th><th>Comment</th></tr>
+       <tr><th>Worker</th><th>Comment</th></tr>
 
        <sql:query var="qryPosts" >
-                  SELECT * FROM ACC_USER
-          </sql:query>
+                  SELECT * FROM ACC_USER WHERE NAME LIKE '%S%' 
+       </sql:query>
 
        <c:forEach var="row" items="${qryPosts.rows}">
-	        <tr>
-               <td><c:out value="${row.ID}" /></td>
-                  <td><c:out value="${row.NAME}" /></td>
-	        </tr>
-          </c:forEach>
-        </table>
+        <tr>
+          <td><c:out value="${row.ID}" /></td>
+          <td><c:out value="${row.NAME}" /></td>
+        </tr>
+       </c:forEach>
+ </table>
 
 </body>
 </html>
