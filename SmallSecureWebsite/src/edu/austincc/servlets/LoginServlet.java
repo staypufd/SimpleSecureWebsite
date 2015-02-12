@@ -1,6 +1,7 @@
 package edu.austincc.servlets;
 
 import java.io.IOException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +18,7 @@ import javax.sql.DataSource;
 
 import edu.austincc.database.DBManager;
 import edu.austincc.domain.User;
+
  
 
 /**
@@ -56,6 +58,7 @@ public class LoginServlet extends HttpServlet {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+    	
     	
     	
     	String url = "/index.jsp";
