@@ -4,6 +4,8 @@
 
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
+<%@ taglib prefix="myTags" tagdir="/WEB-INF/tags" %>
+
 <sql:setDataSource dataSource="jdbc/DB" />
 
 <c:import url="header.html"></c:import>
@@ -26,26 +28,19 @@
 
 	<c:if test="${ (sessionScope.isLoggedIn == false) or (empty isLoggedIn) }">
 		<div class="jumbotron">
+		
+			<myTags:Header fontColor="#660099">
+				Howdy ACC Class.  This is your first Cool tag.... <br/>
+				-- Sam G.
+			</myTags:Header>
+		
 			<h1>Welcome to the ACC Demo Servlet Application!</h1>
 			<p>Login to use our cool app!</p>
 			<p><a class="btn btn-primary btn-lg" href="learnmore.html" role="button">Learn more</a></p>
 		</div>
 	</c:if>
 
- <table border='1'>
-       <tr><th>Worker</th><th>Comment</th></tr>
-
-       <sql:query var="qryPosts" >
-                  SELECT * FROM ACC_USER WHERE NAME LIKE '%S%' 
-       </sql:query>
-
-       <c:forEach var="row" items="${qryPosts.rows}">
-        <tr>
-          <td><c:out value="${row.ID}" /></td>
-          <td><c:out value="${row.NAME}" /></td>
-        </tr>
-       </c:forEach>
- </table>
+	<myTags:userTable />
 
 </body>
 </html>
