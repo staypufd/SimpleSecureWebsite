@@ -27,6 +27,14 @@ public class User implements Comparable<User> {
 		this.ID = ID;
 		this.password = password;
 	}
+	
+	public User(String UUIDString, String name, String password, String email) {
+		super();
+		this.email = email;
+		this.name = name;
+		this.ID = UUID.fromString(UUIDString);
+		this.password = password;
+	}
 
 	/**
 	 * @return the email

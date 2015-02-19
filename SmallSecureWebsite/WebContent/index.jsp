@@ -40,7 +40,9 @@
 		</div>
 	</c:if>
 
-	<myTags:userTable />
+<%-- 	<myTags:userTable /> --%>
+
+	<a class="btn btn-primary btn-lg" href='<c:url value="/users"/>' role="button">Go See Users</a>
 
 </body>
 </html>

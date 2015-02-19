@@ -51,7 +51,7 @@ public class ShowPersonServlet extends HttpServlet {
 				request.setAttribute("capName", theFoundUser.getCapitalizedUserName());
 				url = "/WEB-INF/viewPersonDetail.jsp";
 			} else {
-				url = "/WEB-INF/listpeople";
+				url = "/WEB-INF/people";
 			}
 		}
 		
