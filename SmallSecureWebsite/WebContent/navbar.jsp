@@ -34,7 +34,7 @@
         	<ul class="nav navbar-nav navbar-right">
          		<li><a href="/SmallSecureWebsite/logout">Logout</a></li>
          	</ul>
-        </c:if>
+           </c:if>
        </div><!-- /.navbar-collapse -->
      </div><!-- /.container-fluid -->
    </nav>

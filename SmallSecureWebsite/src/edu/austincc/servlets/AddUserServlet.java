@@ -66,7 +66,12 @@ public class AddUserServlet extends HttpServlet {
 		} else {
 			User newUser = new User(email, name, UUID.randomUUID(), verify_password);
 			DBManager.sharedInstance().addUser(newUser);
-			response.sendRedirect("listpeople");
+			response.sendRedirect("/listpeople");
+			
+			// We have to return so the we exit this method and don't try to forward below.
+			// the sendRedirect above tells the response object to put that data on and close 
+			// response object and send it back to web browser.  So return out of this method
+			return;
 		}
 		
 		// To the url

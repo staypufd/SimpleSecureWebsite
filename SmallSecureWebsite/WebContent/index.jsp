@@ -8,7 +8,7 @@
 
 <sql:setDataSource dataSource="jdbc/DB" />
 
-<c:import url="header.html"></c:import>
+<c:import url="header.jsp"></c:import>
 
 
 <title>Company XYZ</title>
@@ -42,7 +42,7 @@
 
 <%-- 	<myTags:userTable /> --%>
 
-	<a class="btn btn-primary btn-lg" href='<c:url value="/users"/>' role="button">Go See Users</a>
+
 
 </body>
 </html>

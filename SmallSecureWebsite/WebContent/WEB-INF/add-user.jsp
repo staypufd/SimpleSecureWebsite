@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" 
            uri="http://java.sun.com/jsp/jstl/core" %>  
            
-<c:import url="/header.html"></c:import>
+<c:import url="/header.jsp"></c:import>
 
     
 <title>Add User</title>
