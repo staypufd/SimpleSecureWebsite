@@ -2,14 +2,17 @@ package edu.austincc.servlets;
 
 import java.io.IOException;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 
 import edu.austincc.database.DBManager;
+import edu.austincc.databaseManagers.UsersManager;
 import edu.austincc.domain.User;
 
 /**
@@ -19,6 +22,9 @@ import edu.austincc.domain.User;
 public class ShowPersonServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	@Resource(name="jdbc/DB")
+	DataSource ds;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -44,7 +50,8 @@ public class ShowPersonServlet extends HttpServlet {
 			
 			String theUserID = request.getParameter("id");
 			
-			User theFoundUser = DBManager.sharedInstance().findUserWithID(theUserID);
+//			User theFoundUser = DBManager.sharedInstance().findUserWithID(theUserID);
+			User theFoundUser = new UsersManager(ds).getUserWithID(theUserID);
 			
 			if (theFoundUser != null) {
 				request.setAttribute("user", theFoundUser);

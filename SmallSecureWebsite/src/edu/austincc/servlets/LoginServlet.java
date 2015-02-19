@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
 	
 //	@Resource(name="jdbc/DB") 
 //	DataSource ds;
-//	
+	
 	
     /**
      * @see HttpServlet#HttpServlet()

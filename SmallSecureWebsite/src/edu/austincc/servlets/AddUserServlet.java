@@ -3,14 +3,17 @@ package edu.austincc.servlets;
 import java.io.IOException;
 import java.util.UUID;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
 
 import edu.austincc.database.DBManager;
+import edu.austincc.databaseManagers.UsersManager;
 import edu.austincc.domain.User;
 
 /**
@@ -20,6 +23,10 @@ import edu.austincc.domain.User;
 public class AddUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	
+	@Resource(name="jdbc/DB")
+	DataSource ds;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -65,8 +72,8 @@ public class AddUserServlet extends HttpServlet {
 			url = "/WEB-INF/add-user.jsp";
 		} else {
 			User newUser = new User(email, name, UUID.randomUUID(), verify_password);
-			DBManager.sharedInstance().addUser(newUser);
-			response.sendRedirect("/listpeople");
+			new UsersManager(ds).addUser(newUser);
+			response.sendRedirect(request.getContextPath() + "/listpeople");
 			
 			// We have to return so the we exit this method and don't try to forward below.
 			// the sendRedirect above tells the response object to put that data on and close 

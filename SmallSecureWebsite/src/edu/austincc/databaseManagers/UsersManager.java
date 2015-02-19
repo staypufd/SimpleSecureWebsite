@@ -49,6 +49,7 @@ public class UsersManager {
 		return users;
 	}
 
+	
 
 	public boolean addUser(User aUser)  {
 		// TODO - Put the user in the user db
@@ -89,6 +90,35 @@ public class UsersManager {
 		}
 
 		return added;
+	}
+
+	public User getUserWithID(String theUserID) {
+		User foundUser = null;
+
+		try {
+			Connection connection;
+			connection = ds.getConnection();
+
+			PreparedStatement ps = connection.prepareStatement("select ID, UUID, NAME, PASSWORD, EMAIL from ACC_USER where UUID = ?");
+			ps.setString(1, theUserID);
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				foundUser = new User( resultSet.getString("uuid"),
+									resultSet.getString("name"),
+									resultSet.getString("password"),
+									resultSet.getString("email"));
+			}
+
+			resultSet.close();
+			ps.close();
+			connection.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return foundUser;
 	}
 
 	
