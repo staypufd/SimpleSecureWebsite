@@ -24,8 +24,9 @@ public class UsersManager {
 	public ArrayList<User> getUsers() {
 		ArrayList<User> users = new ArrayList<>();
 
+		Connection connection = null;
 		try {
-			Connection connection;
+			
 			connection = ds.getConnection();
 
 			PreparedStatement ps = connection.prepareStatement("select ID, UUID, NAME, PASSWORD, EMAIL from ACC_USER");
@@ -40,10 +41,18 @@ public class UsersManager {
 
 			resultSet.close();
 			ps.close();
-			connection.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 
 		return users;
@@ -58,8 +67,10 @@ public class UsersManager {
 		// Example with data from SQL Script
 		// insert into users (name, password) values ('sam', 'abcd');
 		boolean added = false;
+		Connection connection = null;
+		
 		try {
-			Connection connection;
+			
 			connection = ds.getConnection();
 
 			String uname = aUser.getName();
@@ -82,11 +93,19 @@ public class UsersManager {
 
 
 			prepStatement.close();
-			connection.close();
 
 			added = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 
 		return added;
@@ -94,9 +113,9 @@ public class UsersManager {
 
 	public User getUserWithID(String theUserID) {
 		User foundUser = null;
-
+		Connection connection = null;
+		
 		try {
-			Connection connection;
 			connection = ds.getConnection();
 
 			PreparedStatement ps = connection.prepareStatement("select ID, UUID, NAME, PASSWORD, EMAIL from ACC_USER where UUID = ?");
@@ -112,10 +131,56 @@ public class UsersManager {
 
 			resultSet.close();
 			ps.close();
-			connection.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return foundUser;
+	}
+
+	public User findUserWithNameAndPassword(String name, String password) {
+		User foundUser = null;
+		Connection connection = null;
+		
+		try {
+			connection = ds.getConnection();
+
+			PreparedStatement ps = connection.prepareStatement("select ID, UUID, NAME, PASSWORD, EMAIL from ACC_USER where NAME = ? AND PASSWORD = ?");
+			ps.setString(1, name);
+			ps.setString(2, password);
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				foundUser = new User( resultSet.getString("uuid"),
+									resultSet.getString("name"),
+									resultSet.getString("password"),
+									resultSet.getString("email"));
+			}
+
+			resultSet.close();
+			ps.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 
 		return foundUser;

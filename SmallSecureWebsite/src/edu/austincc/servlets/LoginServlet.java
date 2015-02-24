@@ -1,7 +1,6 @@
 package edu.austincc.servlets;
 
 import java.io.IOException;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import edu.austincc.database.DBManager;
+import edu.austincc.databaseManagers.DBManager;
+import edu.austincc.databaseManagers.UsersManager;
 import edu.austincc.domain.User;
 
  
@@ -29,8 +29,8 @@ public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	
-//	@Resource(name="jdbc/DB") 
-//	DataSource ds;
+	@Resource(name="jdbc/DB") 
+	DataSource ds;
 	
 	
     /**
@@ -102,7 +102,8 @@ public class LoginServlet extends HttpServlet {
 			String name = request.getParameter("name");
 			String password = request.getParameter("password");
 	
-			User theFoundUser = DBManager.sharedInstance().findUserWithNameAndPassword(name, password);
+			// User theFoundUser = DBManager.sharedInstance().findUserWithNameAndPassword(name, password);
+			User theFoundUser = new UsersManager(ds).findUserWithNameAndPassword(name, password); 
 			
 			// If we find the user set the user on the request and foward to the main page
 			// otherwise send them back to the login page

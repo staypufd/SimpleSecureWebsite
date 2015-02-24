@@ -15,7 +15,7 @@
 	${user.name } <br/>
 	${user.email } <br/>
 	<br/>
-	<a href="/SmallSecureWebsite/index.html">Home</a> <br/>
+	<a href="/SmallSecureWebsite/index.jsp">Home</a> <br/>
 	<a href="/SmallSecureWebsite/listpeople">People List</a>
 </body>
 </html>

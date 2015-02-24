@@ -27,21 +27,18 @@
 		<!-- Table data rows -->
 		<c:forEach items="${people }" var="person">
 			<c:choose>
-			    <c:when test="${! fn:contains(person.email, 'foo.com')}">
-			       <tr class="danger">
-							<td>${person.name}</td>
-							<td>${person.email}</td>
-							<td><a href="/SmallSecureWebsite/showperson?id=${person.ID }">${person.ID }</a></td>
-						</tr>
+			    <c:when test="${ fn:contains(person.email, 'amazon.com')}">
+			    	<tr class="danger">
 			    </c:when>
 			    <c:otherwise>
-			    		<tr>
-							<td>${person.name}</td>
-							<td>${person.email}</td>
-							<td><a href="/SmallSecureWebsite/showperson?id=${person.ID }">${person.ID }</a></td>
-						</tr>
+			    	<tr>
 			    </c:otherwise>
 			</c:choose>
+				<!-- Rest of tr tag data items -->
+				    	<td>${person.name}</td>
+						<td>${person.email}</td>
+						<td><a href="showperson?id=${person.ID }">${person.ID }</a></td>
+					</tr>
 			</c:forEach>
 	</table>
 	

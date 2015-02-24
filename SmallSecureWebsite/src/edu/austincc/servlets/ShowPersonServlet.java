@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import edu.austincc.database.DBManager;
+import edu.austincc.databaseManagers.DBManager;
 import edu.austincc.databaseManagers.UsersManager;
 import edu.austincc.domain.User;
 
