@@ -29,7 +29,7 @@
 	<c:if test="${ (sessionScope.isLoggedIn == false) or (empty isLoggedIn) }">
 		<div class="jumbotron">
 		
-			<myTags:Header fontColor="#660099">
+			<myTags:Header>
 				Howdy ACC Class.  This is your first Cool tag.... <br/>
 				-- Sam G.
 			</myTags:Header>
@@ -42,6 +42,6 @@
 
 <%-- 	<myTags:userTable /> --%>
 
-
+<myTags:Footer/>
 </body>
 </html>

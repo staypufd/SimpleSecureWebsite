@@ -15,7 +15,7 @@
 	${user.name } <br/>
 	${user.email } <br/>
 	<br/>
-	<a href="/SmallSecureWebsite/index.jsp">Home</a> <br/>
-	<a href="/SmallSecureWebsite/listpeople">People List</a>
+	<a href="${pageContext.request.contextPath}/index.jsp">Home</a> <br/>
+	<a href="${pageContext.request.contextPath}/listpeople">People List</a>
 </body>
 </html>

@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import edu.austincc.databaseManagers.DBManager;
 import edu.austincc.databaseManagers.UsersManager;
 import edu.austincc.domain.User;
+import edu.austincc.exceptions.DBErrorException;
 
 /**
  * Servlet implementation class AddUserServlet
@@ -70,9 +71,17 @@ public class AddUserServlet extends HttpServlet {
 		
 		if ( ! password.equalsIgnoreCase( verify_password) ) {
 			url = "/WEB-INF/add-user.jsp";
+			request.setAttribute("error", "Passwords did not match.  Try again!");
 		} else {
 			User newUser = new User(email, name, UUID.randomUUID(), verify_password);
-			new UsersManager(ds).addUser(newUser);
+			try {
+				new UsersManager(ds).addUser(newUser);
+			} catch (DBErrorException e) {
+				// TODO Auto-generated catch block
+				url = "/dberror.jsp";
+				getServletContext().getRequestDispatcher(url).forward(request, response);
+				return;
+			} 
 			response.sendRedirect(request.getContextPath() + "/listpeople");
 			
 			// We have to return so the we exit this method and don't try to forward below.

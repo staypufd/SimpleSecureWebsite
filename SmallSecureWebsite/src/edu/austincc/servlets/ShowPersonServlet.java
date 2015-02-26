@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 import edu.austincc.databaseManagers.DBManager;
 import edu.austincc.databaseManagers.UsersManager;
 import edu.austincc.domain.User;
+import edu.austincc.exceptions.DBErrorException;
 
 /**
  * Servlet implementation class ShowPersonServlet
@@ -49,9 +50,15 @@ public class ShowPersonServlet extends HttpServlet {
 			url = "/WEB-INF/listpeople";
 			
 			String theUserID = request.getParameter("id");
-			
-//			User theFoundUser = DBManager.sharedInstance().findUserWithID(theUserID);
-			User theFoundUser = new UsersManager(ds).getUserWithID(theUserID);
+			User theFoundUser = null;
+			try {
+				theFoundUser = new UsersManager(ds).getUserWithID(theUserID);
+			} catch (DBErrorException e) {
+				// TODO Auto-generated catch block
+				url = "/dberror.jsp";
+				getServletContext().getRequestDispatcher(url).forward(request, response);
+				return;
+			} 
 			
 			if (theFoundUser != null) {
 				request.setAttribute("user", theFoundUser);

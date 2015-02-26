@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 
 import edu.austincc.databaseManagers.UsersManager;
 import edu.austincc.domain.User;
+import edu.austincc.exceptions.DBErrorException;
 
 /**
  * Servlet implementation class UsersServlet
@@ -38,15 +39,24 @@ public class UsersServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		String url = "/main.jsp";
 		UsersManager um = new UsersManager(ds);
-		
-		ArrayList<User> theUsers = um.getUsers();
+		ArrayList<User> theUsers = null;
+		try {
+			theUsers = um.getUsers();
+		} catch (DBErrorException e) {
+			// TODO Auto-generated catch block
+			url = "/dberror.jsp";
+			getServletContext().getRequestDispatcher(url).forward(request, response);
+			return;
+		} 
 		
 		// System.out.println(theUsers);
-		
-		String url = "/WEB-INF/people.jsp";
-		
-		request.setAttribute("people", theUsers);
+		if (theUsers != null) {
+			url = "/WEB-INF/people.jsp";
+			
+			request.setAttribute("people", theUsers);
+		}
 		
 		getServletContext().getRequestDispatcher(url).forward(request, response);
 	}

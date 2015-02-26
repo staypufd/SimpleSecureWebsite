@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import edu.austincc.databaseManagers.DBManager;
 import edu.austincc.databaseManagers.UsersManager;
 import edu.austincc.domain.User;
+import edu.austincc.exceptions.DBErrorException;
 
 
 /**
@@ -50,12 +51,21 @@ public class ListPeopleServlet extends HttpServlet {
 			boolean loggedIn = loggedInBoolean.booleanValue();
 			 
 			if ( loggedIn ) {
+				ArrayList<User> people = null;
+				try {
+					people = new UsersManager(ds).getUsers();
+				} catch (DBErrorException e) {
+					// TODO Auto-generated catch block
+					url = "/dberror.jsp";
+					getServletContext().getRequestDispatcher(url).forward(request, response);
+					return;
+				} 
 				
-				ArrayList<User> people = new UsersManager(ds).getUsers();
-				
-				url = "/WEB-INF/people.jsp";
-				
-				request.setAttribute("people", people);
+				if (people != null) {
+					url = "/WEB-INF/people.jsp";
+					
+					request.setAttribute("people", people);
+				}
 			}
 		}
 

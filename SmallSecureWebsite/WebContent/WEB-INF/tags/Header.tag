@@ -1,12 +1,19 @@
-<%@ attribute name="fontColor" required="true" %>
+<%-- <%@ attribute name="fontColor" required="true" %> --%>
 <%@ tag body-content="tagdependent" %>
 
-<img height="72" width="72" src="images/image1.jpg" > <br/>
+<!-- <em> -->
+<!-- 	<strong> -->
+<%-- 		<font color="${fontColor }"> --%>
+<%-- 			<jsp:doBody /> --%>
+<!-- 		</font> -->
+<!-- 	</strong> -->
+<!-- </em> -->
 
-<em>
-	<strong>
-		<font color="${fontColor }">
-			<jsp:doBody />
-		</font>
-	</strong>
-</em>
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title">Error</h3>
+  </div>
+  <div class="panel-body">
+    ${error}
+  </div>
+</div>

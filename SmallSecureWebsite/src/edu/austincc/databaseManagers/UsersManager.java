@@ -1,5 +1,6 @@
 package edu.austincc.databaseManagers;
 
+import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,8 +11,10 @@ import java.util.Calendar;
 import javax.sql.DataSource;
 
 import org.apache.derby.client.am.DateTime;
+import org.apache.tomcat.dbcp.dbcp.SQLNestedException;
 
 import edu.austincc.domain.User;
+import edu.austincc.exceptions.DBErrorException;
 
 public class UsersManager {
 
@@ -21,7 +24,7 @@ public class UsersManager {
 		this.ds = ds;
 	}
 
-	public ArrayList<User> getUsers() {
+	public ArrayList<User> getUsers() throws DBErrorException {
 		ArrayList<User> users = new ArrayList<>();
 
 		Connection connection = null;
@@ -44,6 +47,7 @@ public class UsersManager {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new DBErrorException();
 		} finally {
 			if (connection != null) {
 				try {
@@ -60,7 +64,7 @@ public class UsersManager {
 
 	
 
-	public boolean addUser(User aUser)  {
+	public boolean addUser(User aUser) throws DBErrorException  {
 		// TODO - Put the user in the user db
 		// FIXME - This has a bug
 
@@ -97,6 +101,7 @@ public class UsersManager {
 			added = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new DBErrorException();
 		} finally {
 			if (connection != null) {
 				try {
@@ -111,7 +116,7 @@ public class UsersManager {
 		return added;
 	}
 
-	public User getUserWithID(String theUserID) {
+	public User getUserWithID(String theUserID) throws DBErrorException {
 		User foundUser = null;
 		Connection connection = null;
 		
@@ -134,6 +139,7 @@ public class UsersManager {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new DBErrorException();
 		} finally {
 			if (connection != null) {
 				try {
@@ -148,7 +154,7 @@ public class UsersManager {
 		return foundUser;
 	}
 
-	public User findUserWithNameAndPassword(String name, String password) {
+	public User findUserWithNameAndPassword(String name, String password) throws DBErrorException {
 		User foundUser = null;
 		Connection connection = null;
 		
@@ -172,6 +178,7 @@ public class UsersManager {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new DBErrorException();
 		} finally {
 			if (connection != null) {
 				try {

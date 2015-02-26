@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 import edu.austincc.databaseManagers.DBManager;
 import edu.austincc.databaseManagers.UsersManager;
 import edu.austincc.domain.User;
+import edu.austincc.exceptions.DBErrorException;
 
  
 
@@ -101,9 +102,18 @@ public class LoginServlet extends HttpServlet {
 			
 			String name = request.getParameter("name");
 			String password = request.getParameter("password");
+			boolean isDBError = false;
 	
 			// User theFoundUser = DBManager.sharedInstance().findUserWithNameAndPassword(name, password);
-			User theFoundUser = new UsersManager(ds).findUserWithNameAndPassword(name, password); 
+			User theFoundUser = null;
+			try {
+				theFoundUser = new UsersManager(ds).findUserWithNameAndPassword(name, password);
+			} catch (DBErrorException e) {
+				// TODO Auto-generated catch block
+				url = "/dberror.jsp";
+				getServletContext().getRequestDispatcher(url).forward(request, response);
+				return;
+			} 
 			
 			// If we find the user set the user on the request and foward to the main page
 			// otherwise send them back to the login page
