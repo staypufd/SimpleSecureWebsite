@@ -1,18 +1,11 @@
 
-<%@ taglib prefix="c"
-           uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
-
-<%@ taglib prefix="myTags" tagdir="/WEB-INF/tags" %>
-
-<sql:setDataSource dataSource="jdbc/DB" />
-
-<c:import url="header.jsp"></c:import>
 
 
-<title>Company XYZ</title>
-</head>
+<%@ include file="header.jsp" %>
+
+
+<!-- <title>Company XYZ</title> -->
+<!-- </head> -->
 <body bgcolor="lightgrey">
 
 	<c:import url="navbar.jsp"></c:import>
@@ -29,10 +22,8 @@
 	<c:if test="${ (sessionScope.isLoggedIn == false) or (empty isLoggedIn) }">
 		<div class="jumbotron">
 		
-			<myTags:Header>
-				Howdy ACC Class.  This is your first Cool tag.... <br/>
-				-- Sam G.
-			</myTags:Header>
+			<!-- Show error if there is one  -->
+				<myTags:Error />
 		
 			<h1>Welcome to the ACC Demo Servlet Application!</h1>
 			<p>Login to use our cool app!</p>

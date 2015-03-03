@@ -127,6 +127,7 @@ public class LoginServlet extends HttpServlet {
 				
 				url = "/WEB-INF/main.jsp";  
 			} else { 
+				request.setAttribute("error", "The username or password was incorrect!");
 				url = "/WEB-INF/login.jsp"; 
 			}
 		}

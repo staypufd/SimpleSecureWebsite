@@ -1,8 +1,4 @@
-
-<%@ taglib prefix="c" 
-           uri="http://java.sun.com/jsp/jstl/core" %>  
-           
-<c:import url="/header.jsp"></c:import>
+<%@ include file="../header.jsp" %>
 
 <title>Login</title>
 </head>
@@ -10,6 +6,8 @@
 <body>
 	<c:import url="/navbar.jsp"></c:import>
 	
+	<myTags:Error />
+			
 	<p>Age is: ${age}</p>
 
 	<form action="LoginServlet" method="post">
