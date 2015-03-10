@@ -1,11 +1,5 @@
 
-<%@ taglib prefix="c" 
-           uri="http://java.sun.com/jsp/jstl/core" %>  
-           
-<%@ taglib prefix="fn" 
-           uri="http://java.sun.com/jsp/jstl/functions" %>
-           
-<c:import url="/header.jsp"></c:import>
+<%@ include file="/header.jsp" %>
 
 <title>Email Contacts</title>
 </head>

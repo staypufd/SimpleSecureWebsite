@@ -11,6 +11,9 @@
 
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
+<%@ taglib prefix="fn" 
+           uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <%@ taglib prefix="myTags" tagdir="/WEB-INF/tags" %>
 
 <sql:setDataSource dataSource="jdbc/DB" />
@@ -18,4 +21,3 @@
 <%@ include file="/common-css-javascript.html" %> 	
 
 <title>${title }</title>
-</head>
