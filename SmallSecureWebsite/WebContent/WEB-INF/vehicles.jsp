@@ -34,12 +34,16 @@
 				<td>
 
 					<a class="btn btn-default btn-xs" href="editVehicle?id=${vehicle.id }">Edit</a>
-
+					<form class="form-horizontal"  action="deleteVehicle" method="post">
+						<input type="hidden" name="id" value="${vehicle.id }">
+						<input class="btn btn-xs btn-danger"  type="submit" value="Delete" id="submit">
+					</form>
 				</td>
 			</tr>
 		</c:forEach>
 	</table>
-
+	
+	<a class="btn btn-primary" href="/SmallSecureWebsite/addVehicle">Add Vehicle</a>
 <myTags:Footer/>
 	
 </body>

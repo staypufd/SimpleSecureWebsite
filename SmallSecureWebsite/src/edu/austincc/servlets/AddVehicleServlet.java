@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import edu.austincc.databaseManagers.VehiclesManager;
@@ -16,19 +15,20 @@ import edu.austincc.domain.Vehicle;
 import edu.austincc.exceptions.DBErrorException;
 
 /**
- * Servlet implementation class EditVehicleServlet
+ * Servlet implementation class AddVehicleServlet
  */
-@WebServlet({ "/EditVehicleServlet", "/editVehicle" })
-public class EditVehicleServlet extends HttpServlet {
+@WebServlet({ "/AddVehicleServlet", "/addVehicle" })
+public class AddVehicleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+    
 	@Resource(name="jdbc/DB")
 	DataSource ds;
 	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EditVehicleServlet() {
+    public AddVehicleServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,59 +37,27 @@ public class EditVehicleServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String url = "/index.jsp";
-		Vehicle vehicle = null;
-		int id = new Integer(request.getParameter("id"));
-		
-		HttpSession session = request.getSession();
-		
-		Boolean loggedInBoolean = (Boolean) session.getAttribute("isLoggedIn");
-		if ( loggedInBoolean != null ) {
-			boolean loggedIn = loggedInBoolean.booleanValue();
-			 
-			if ( loggedIn ) {
-				
-				try {
-					vehicle = new VehiclesManager(ds).getVehicleWithID(id);			
-				} catch (DBErrorException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					url = "/dberror.jsp";
-					getServletContext().getRequestDispatcher(url).forward(request, response);
-					return;
-				}
-				
-				if (vehicle != null) {
-					request.setAttribute("vehicle", vehicle);
-					request.setAttribute("title", "Edit Vehicle");
-					url = "/WEB-INF/editVehicle.jsp";
-				}
-			}
-		}
-
-		getServletContext().getRequestDispatcher(url).forward(request, response);
+		// TODO Auto-generated method stub
+		getServletContext().getRequestDispatcher("/WEB-INF/addVehicle.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		String url = request.getContextPath() + "/listVehicles";
 		boolean updateSucceeded = false;
 		
-		int id = new Integer(request.getParameter("id"));
 		String make = request.getParameter("make");
 		String model = request.getParameter("model");
 		String color = request.getParameter("color");
 		int year = new Integer(request.getParameter("year"));
 		int mileage = new Integer(request.getParameter("mileage"));
 		
-		Vehicle v = new Vehicle(id, make, model, color, year, mileage);
+	
 		
 		try {
-			updateSucceeded = new VehiclesManager(ds).updateVehicle(v);
+			updateSucceeded = new VehiclesManager(ds).addVehicleForValues(make, model, color, year, mileage);
 		} catch (DBErrorException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,8 +65,7 @@ public class EditVehicleServlet extends HttpServlet {
 		
 		if (updateSucceeded != true) {
 			request.setAttribute("error", "Update of database record failed.");
-			url = "/WEB-INF/editVehicle?id=" + id;
-			request.setAttribute("id", id);
+			url = "/WEB-INF/addVehicle";
 			request.setAttribute("make", make);
 			request.setAttribute("model", model);
 			request.setAttribute("color", color);

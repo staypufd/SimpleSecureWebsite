@@ -4,19 +4,13 @@
 <body>
 
 <c:import url="/navbar.jsp"></c:import>
-		<h1>Edit Vehicle</h1>
+		<h1>Add Vehicle</h1>
 
 		<hr class="col-md-12"/>
 		<div class="col-md-offset-1 col-md-8">
-			<form class="form-horizontal"  action="editVehicle" method="post">
-				<input type="hidden" name="action" value="edit-vehicle">
-				
-				
-				<div class="form-group">
-					<label>ID:</label>
-					<input class="form-control" type="text" name="id" value="${vehicle.id }" readonly><br/>
-				</div>
-				
+			<form class="form-horizontal"  action="addVehicle" method="post">
+				<input type="hidden" name="action" value="add-vehicle">
+
 				<div class="form-group">
 					<label>Make:</label>
 					<input class="form-control" type="text" name="make" value="${vehicle.make }" required><br/>
@@ -44,7 +38,7 @@
 
 				
 				<label >&nbsp;</label>
-				<input class="btn btn-primary active"  type="submit" value="Save Edits To Vehicle" id="submit">
+				<input class="btn btn-primary active"  type="submit" value="Save Vehicle" id="submit">
 		
 			</form>
 		</div>

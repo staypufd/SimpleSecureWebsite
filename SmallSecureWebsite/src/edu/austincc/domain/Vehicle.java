@@ -26,7 +26,7 @@ public class Vehicle {
 		this.color = color;
 	}
 
-	
+
 	/**
 	 * @return the id
 	 */
