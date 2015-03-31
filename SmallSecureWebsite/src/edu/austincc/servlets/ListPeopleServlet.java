@@ -44,13 +44,13 @@ public class ListPeopleServlet extends HttpServlet {
 		
 		String url = "/index.jsp";
 		
-		HttpSession session = request.getSession();
-		
-		Boolean loggedInBoolean = (Boolean) session.getAttribute("isLoggedIn");
-		if ( loggedInBoolean != null ) {
-			boolean loggedIn = loggedInBoolean.booleanValue();
-			 
-			if ( loggedIn ) {
+//		HttpSession session = request.getSession();
+//		
+//		Boolean loggedInBoolean = (Boolean) session.getAttribute("isLoggedIn");
+//		if ( loggedInBoolean != null ) {
+//			boolean loggedIn = loggedInBoolean.booleanValue();
+//			 
+//			if ( loggedIn ) {
 				ArrayList<User> people = null;
 				try {
 					people = new UsersManager(ds).getUsers();
@@ -66,8 +66,8 @@ public class ListPeopleServlet extends HttpServlet {
 					
 					request.setAttribute("people", people);
 				}
-			}
-		}
+//			}
+//		}
 
 		
 		getServletContext().getRequestDispatcher(url).forward(request, response);

@@ -5,6 +5,7 @@
 </head>
 <body>	
 
+
 	<c:import url="/navbar.jsp"></c:import>
 
     <h4>People List</h4>

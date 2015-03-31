@@ -23,7 +23,7 @@
            <li class="active"><a href="index.jsp">Home</a></li>
            
            <c:if test="${ (isLoggedIn == false) or (empty isLoggedIn)  }">
-           		<li><a href="/SmallSecureWebsite/login?age=24&color=red">Login</a></li>
+           		<li><a href="/SmallSecureWebsite/login">Login</a></li>
 			</ul>  <!-- close the <ul> tag above -->
            </c:if>
            

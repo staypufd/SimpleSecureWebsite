@@ -45,40 +45,7 @@ public class LoginServlet extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
-    	
-//    	try {
-//    		Connection conn = ds.getConnection();
-//			PreparedStatement theQuery = conn.prepareStatement("SELECT * FROM ACC_USER");
-//			ResultSet rs = theQuery.executeQuery();
-//			
-//			while (rs.next()) {
-//				System.out.println(rs.getInt("ID"));
-//			}
-//			
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-    	
-    	
-    	
-    	String url = "/index.jsp";
-    	
-    	String age = request.getParameter("age");
-    	
-    	if (age != null) {
-    		url = "/WEB-INF/login.jsp";
-    		request.setAttribute("age", age);
-    	}
-    
-    	
-    	// If age is 25, set reponse to tell browser to redirt to cnn
-    	int ageNum = new Integer(age);
-    	if (ageNum == 25) {
-    		url = "http://www.cnn.com";
-    		response.sendRedirect(url);
-    		return;
-    	}
+    	String url = "/login.jsp";
     	
     	getServletContext().getRequestDispatcher(url).forward(request, response);
     
@@ -112,7 +79,6 @@ public class LoginServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				url = "/dberror.jsp";
 				getServletContext().getRequestDispatcher(url).forward(request, response);
-				return;
 			} 
 			
 			// If we find the user set the user on the request and foward to the main page
